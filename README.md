@@ -20,7 +20,7 @@ A brand new social app where you can unlock a new world of networking through po
 [Questions](#questions)
 
 ## Links
-[SnapShot](https://snapshotban.herokuapp.com/)
+[SnapShot](https://snapshot-bh.herokuapp.com/)
 
 ## Media
 The following image shows the home page: 
