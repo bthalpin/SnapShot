@@ -49,9 +49,9 @@ router.get("/posts/:id", authorize, async (req, res) => {
     // Creates isOwner boolean to check if current user id matches user id of post
     const isOwner = req.session.userId === post.user.id;
     const adminOrOwner = isAdmin || isOwner;
-    
+    const userId = { userId: req.session.userId }
     // Sends data to singlePost view
-    res.render("singlePost", { post, isOwner, adminOrOwner });
+    res.render("singlePost", { post, adminOrOwner ,userId });
   } catch (err) {
     res.status(400).json(err);
   }
