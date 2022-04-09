@@ -280,7 +280,7 @@ input[type="file"]{
  .single-post-card{
     background-color: rgba(232, 232, 232, 0.719);
     border: 5px solid white;
-
+    padding:0 6rem;
     position:relative;
     box-shadow: 1rem 1rem 1rem black;
 
