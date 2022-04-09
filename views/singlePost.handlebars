@@ -1,4 +1,4 @@
-<div class="navigation d-flex text-white justify-content-between align-items-center mx-5 my-5 flex-wrap">
+<div class="navigation bg-dark border-bottom border-white d-flex text-white justify-content-between align-items-center px-5 py-5 mb-5 flex-wrap">
     <div class="singlePostNav d-flex justify-content-between">
         <div class="home-container">
             <a type="button" href='/' value="Home" class="text-white fs-2 profile"><p>Home</p></a>
@@ -7,6 +7,7 @@
             <a href="/user/{{userId}}" class="text-white fs-2 profile"><p>My Posts</p></a>
         </div>
     </div>
+    
     <div class="logout-container">
         <a class="text-decoration-none text-white fs-2 " href="#" id="logout"><p>Logout</p></a>
     </div>
@@ -15,9 +16,11 @@
 
 {{!-- data-postId is id of current post --}}
 <div class="d-flex flex-column align-items-center justify-content-center post w-100" data-postId="{{post.id}}">
-    <div class="text-white d-flex flex-column  justify-content-center">
-        <h2 class="display-3 text-center single-post-title">{{post.title}}</h2>
-        <div class="fs-3 text-center pb-3"><a href="/user/{{post.user.id}}" class="username">{{post.user.username}}</a></div>
+    <div class="single-post-card">
+
+    <div class=" d-flex flex-column  justify-content-center">
+        <h2 class="display-2 mt-5 text-center single-post-title">{{post.title}}</h2>
+        <div class="fs-2 text-center pb-3"><a href="/user/{{post.user.id}}" class="username">{{post.user.username}}</a></div>
 
         <div class="card-container d-flex justify-content-center">
             <div class="card-box-single d-flex justify-content-center">
@@ -27,21 +30,21 @@
         </div>
     </div>
 
-    <div class="pb-3 fs-4 text-white single-post-text text-center">{{post.description}}</div>
+    <div class="pb-3 fs-3 mx-auto  single-post-text text-center">{{post.description}}</div>
 
     <div class="post-buttons">
         <!-- COMMENT Button trigger modal -->
-        <button type="button" class="single-post-button btn" data-bs-toggle="modal" data-bs-target="#commentModal">
+        <button type="button" class="single-post-button btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal">
             Add New Comment
         </button>
 
         {{>newCommentModal}}
-
+<div class="postBtnContainer d-flex">
 {{!-- Displays edit button if current user id matches post user id --}}
-    {{#if isOwner.valid}}
+    {{#if adminOrOwner}}
         <!-- EDIT Button trigger modal -->
-        <button type="button" class=" single-post-button btn" data-bs-toggle="modal" data-bs-target="#editModal">
-            Edit Post
+        <button type="button" class="btn edit" data-bs-toggle="modal" data-bs-target="#editModal">
+            <img src="/images/edit.png" >
         </button>
     {{/if}}
         
@@ -49,27 +52,28 @@
 {{>editPostModal}}
 
 {{!-- Displays delete button if current user id matches post user id --}}
-    {{#if isOwner.valid}}
+    {{#if adminOrOwner}}
         <!-- DELETE Button trigger modal -->
-        <button type="button" class=" single-post-button btn" data-bs-toggle="modal" data-bs-target="#deleteModal" >
-            Delete Post
+        <button type="button" class="btn delete" data-bs-toggle="modal" data-bs-target="#deleteModal" >
+            <img src="/images/delete.png" >
         </button>
     {{/if}}
-        
+        </div>
+    </div>
     </div>
     {{>deletePostModal}}
 
         {{!-- Comment area displayed only if there are comments --}}
         {{#if post.comments}}
-        <div id="comment-box" class="comment-box-single">
+        {{!-- <div id="comment-box" class="comment-box-single"> --}}
             {{#each post.comments as |comment|}}
             {{>comments}}
             {{/each}}
-        </div>
+        {{!-- </div> --}}
         {{/if}}
             {{>editCommentModal}}
             {{>deleteCommentModal}}
-            
+            {{>confirmCommentModal}}
   
 </div>
 

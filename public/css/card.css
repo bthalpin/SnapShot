@@ -5,11 +5,26 @@
 }
 body{
     height:100vh;
-    background-color: rgb(37, 37, 37);
-    background-image: url('../images/darkgb.jpeg');
-    background-size:cover;
+    background-color: rgb(30, 30, 30);
+    /* background-image: url('/images/background.png'); */
+    /* background-size:cover;
     background-repeat: no-repeat;
+    background-attachment: fixed; */
+}
+body::after {
+    content: "";
+    background-image: url('/images/background.png');
+    background-size: 28%;
+    background-repeat: repeat;
     background-attachment: fixed;
+    background-position: center;
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.2;
 }
 .nav a{
     color: white;
@@ -19,19 +34,20 @@ body{
 .card-box{
     display: flex;
     flex-direction: row;
-    border: 5px solid black;
-    border-radius: 30px;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 5px;
     width: 370px;
     margin: 30px;
     text-align: center;
     background-color: whitesmoke;
     transition: transform 0.2s ease-in-out;
     padding:0 1rem;
+    box-shadow: 1rem 1rem 1rem black;
 }
 .card-box:hover{
-    border: 5px solid darkcyan;
+    border: 5px solid rgb(61, 135, 253);
     transform: scale(1.05);
-    box-shadow: 0 0 1rem darkcyan;
+    box-shadow: 0 0 1rem rgb(61, 135, 253);
 }
 
 .card-box-single{
@@ -60,8 +76,10 @@ text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.623);
+    background-color: rgba(232, 232, 232, 0.719);
 
+    position:relative;
+    box-shadow: 1rem 1rem 1rem black;
 }
 
 .comment {
@@ -121,7 +139,7 @@ a{
     font-size: 30px;
 }
 .username{
-    color:darkcyan;
+    color:rgb(61, 135, 253);
 }
 .username:hover{
     color:rgb(16, 192, 192);
@@ -130,9 +148,12 @@ a{
 
 
 /* login */
+.signIn{
+    position:relative;
+}
 .login-page{
     width:100vw;
-    height:100vh;
+    height:calc(100vh - 201px);
     display:flex;
     justify-content: center;
     align-items: center;
@@ -173,7 +194,7 @@ a{
     left: 39%; */
     margin: 20px 10px 10px 10px;
     border-radius: 5px;
-    background-color: darkcyan;
+    background-color: rgb(61, 135, 253);
     color:white;
 }
 
@@ -210,15 +231,15 @@ input[type="file"]{
 /* add new post btn */
 .newPostBtn{
     margin: 20px 50px 20px 50px;
-    background-color: darkcyan;
+    /* background-color: rgb(61, 135, 253); */
     color:rgb(228, 228, 228);
     transition:transform 0.2s ease-in-out;
 }
 .newPostBtn:hover{
     transform:scale(1.05);
     color:white;
-    box-shadow: 0 0 0.3rem rgb(50, 191, 191);
-    border-color:rgb(43, 189, 189);
+    box-shadow: 0 0 0.3rem rgb(61, 135, 253);
+    border-color:rgb(61, 135, 253);
 }
 /* back button */
 .backBtn{
@@ -255,10 +276,56 @@ input[type="file"]{
 .singlePostNav .profile{
     margin-right:3rem;
  }
+
+ .single-post-card{
+    background-color: rgba(232, 232, 232, 0.719);
+    border: 5px solid white;
+
+    position:relative;
+    box-shadow: 1rem 1rem 1rem black;
+
+ }
+.postBtnContainer {
+
+    position:absolute;
+    top:0;
+    right:0;
+}
+.postBtnContainer button{
+    width:2rem;
+    margin:0.5rem;
+    background-color: transparent;
+    padding:0;
+}
+.postBtnContainer img{
+    width:1.6rem;
+}
+.edit,.delete{
+    position:relative;
+}
+.edit:hover:after{
+    position:absolute;
+    background-color: whitesmoke;
+    top:-1.6rem;
+    right:0;
+    content:'Edit';
+    color:black;
+    padding:0 0.2rem;
+
+}
+.delete:hover:after{
+    position:absolute;
+    background-color: whitesmoke;
+    color:black;
+    padding:0 0.2rem;
+    top:-1.6rem;
+    right:0px;
+    content:'Delete'
+}
 .single-post-button {
-    margin: 2rem 2.1rem 1rem 2.1rem;
-    background-color: darkcyan;
-    color:rgb(228, 228, 228);
+    margin: 2rem 0;
+    /* background-color: rgb(61, 135, 253);
+    color:rgb(228, 228, 228); */
     transition:transform 0.2s ease-in-out;
 }
 
@@ -266,9 +333,16 @@ input[type="file"]{
     transform:scale(1.05);
     color:white;
 }
+.comment-button-container{
+    position:absolute;
+    top:0;
+    right:0;
+}
 .commentBtn{
-    margin: 0.5rem 0.2rem;
-    background-color: darkcyan;
+    width:1.5rem;
+    /* margin: 0.5rem 0.2rem; */
+    padding:0;
+    /* background-color: darkcyan; */
     color:rgb(228, 228, 228);
     transition:transform 0.2s ease-in-out;
 }
@@ -276,10 +350,13 @@ input[type="file"]{
     transform:scale(1.05);
     color:white;
 }
+.commentBtn img{
+    width:1.2rem;
+}
 .projectName{
     order:1;
     margin-bottom:0.4rem !important;
-    font-size: 3rem;;
+    /* font-size: 3rem; */
     /* transition:all 0.2s ease-in-out; */
 
 }
@@ -302,7 +379,7 @@ input[type="file"]{
 
 @media screen and (max-width: 700px) {
     .navigation{
-        margin:2rem 1rem !important;
+        /* margin:0rem 1rem !important; */
     }
     .login-container{
         width: 500px;
@@ -344,8 +421,8 @@ input[type="file"]{
     }
     .navigation{
         /* margin:0 !important; */
-        padding-bottom:0.8rem !important;
-        margin:1rem 0 3rem 0 !important;
+        padding:0.8rem 0 !important;
+        margin:0rem 0 3rem 0 !important;
         border-bottom:1px solid white;
 
     }
@@ -390,7 +467,10 @@ input[type="file"]{
         align-items: center;
         left: 5%;
     }
-  
+    .single-post-card{
+        border-left:none;
+        border-right:none;
+    }
     .single-post-title{
         width:90vw;
     }
@@ -401,9 +481,11 @@ input[type="file"]{
     width: 100vw;
     }
     #comment-box{
-        border-left:none;
-        border-right:none;
+        border-left:none !important;
+        border-right:none !important;
+        border-radius: 0;
         width:100vw;
+        
     }
     .single-post-button{
         margin:2rem 1rem 1rem 1rem;
@@ -473,5 +555,11 @@ input[type="file"]{
 @media screen and (max-height:800px) {
     .pictureInput,input[type="file"]{ 
         height:200px;   
+    }
+    .signIn{
+        display: none !important;
+    }
+    .login-page{
+        height:100vh;
     }
 }

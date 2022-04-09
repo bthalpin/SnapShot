@@ -11,6 +11,9 @@ const editCommentModal =document.querySelector('.edit-comment-form');
 const editCommentText =document.querySelector('#edit-comment-text');
 const postTitle = document.querySelector('.single-post-title');
 const postDescription = document.querySelector('.single-post-text');
+const confirmCommentButton = document.querySelector('.comment-confirm');
+let confirmCommentModal = new bootstrap.Modal(document.getElementById('confirmComment'), {});
+let commentModal = new bootstrap.Modal(document.getElementById('commentModal'), {});
 
 
 let deleteModal = new bootstrap.Modal(document.getElementById('deleteCommentModal'), {});
@@ -28,8 +31,11 @@ editCommentBtn.forEach(( btn) => {
 deleteCommentModalBtn.addEventListener('click',deleteConfirmed)
 editCommentModal.addEventListener('submit',editConfirmed)
 
+
 // Post id for currently selected post
 const postId = post.getAttribute('data-postId')
+
+
 
 // Grabs the current post title and description and sets it as the placeholder for editing
 const titleEl = document.querySelector('.post-title')
@@ -39,6 +45,12 @@ descriptionEl.placeholder=postDescription.textContent;
 
 
 let commentid;
+
+
+confirmCommentButton.addEventListener('click',()=>{
+  document.location.reload()
+})
+
 
 // Deletes post based on current post id
 async function deletePost()  {
@@ -102,7 +114,7 @@ function deleteComment(e){
   e.preventDefault()
   e.stopPropagation()
   
-  commentid = e.target.dataset.id
+  commentid = e.target.parentElement.dataset.id
     deleteModal.show()
     
 }
@@ -112,9 +124,10 @@ function deleteComment(e){
 function editComment(e){
   e.preventDefault()
   e.stopPropagation()
-  editCommentText.placeholder = e.target.parentElement.children[1].textContent
+  // console.log(e.target.parentElement.parentElement.parentElement.children[0].children[1].textContent)
+  editCommentText.placeholder = e.target.parentElement.parentElement.parentElement.children[0].children[1].textContent
   
-  commentid = e.target.dataset.id
+  commentid = e.target.parentElement.dataset.id
     editModal.show()
     
 }
@@ -165,7 +178,9 @@ cFormEl.addEventListener("submit", async (e) => {
     headers: { "Content-Type": "application/json" },
   });
   if (response.ok) {
-    document.location.reload();
+    commentModal.hide()
+    // document.location.reload();
+    confirmCommentModal.show()
   } else {
     console.log("Unable to add comment");
   }

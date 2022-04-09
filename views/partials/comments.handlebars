@@ -1,37 +1,45 @@
-<div class="comment text-center" data-commentid={{id}}>
-  <h4 class="text-white">{{user.username}}</h4>
-  <p class="comment-text text-white">{{text}}</p>
+<div id="comment-box" class="comment-box-single">
 
-  {{#if isOwner.valid}}
-    <!-- Edit Comment Button trigger modal -->
-    <button
-      type="button"
-      class="btn commentBtn"
-      id="editComment"
-      data-bs-toggle="modal"
-      data-bs-target="#editCommentModal"
+  <div class="comment text-center" data-commentid={{id}}>
+  
+    <h4 class="fs-4">{{user.username}}</h4>
+    <p class="comment-text fs-3">{{text}}</p>
 
-      {{!-- ID of current comment passed into the edit button --}}
-      data-id={{id}}
-    >
-      Edit Comment
-    </button>
-  {{/if}}
+  </div>
+  <div class="comment-button-container">
 
-  {{#if isOwner.valid}}
-    <!-- Delete Comment Button trigger modal -->
+    {{#if isOwner.valid}}
+      <!-- Edit Comment Button trigger modal -->
+      <button
+        type="button"
+        class="btn commentBtn edit"
+        id="editComment"
+        data-bs-toggle="modal"
+        data-bs-target="#editCommentModal"
 
-    <button
-      type="button"
-      class="btn commentBtn"
-      id="deleteComment"
+        {{!-- ID of current comment passed into the edit button --}}
+        data-id={{id}}
+      >
+      <img src="/images/edit.png" >
+      </button>
+    {{/if}}
 
-      {{!-- ID of current comment passed into the delete button --}}
-      data-id={{id}}
-    >
-      Delete Comment
-    </button>
-  {{/if}}
+    {{#if isOwner.valid}}
+      <!-- Delete Comment Button trigger modal -->
+
+      <button
+        type="button"
+        class="btn commentBtn delete"
+        id="deleteComment"
+
+        {{!-- ID of current comment passed into the delete button --}}
+        data-id={{id}}
+      >
+        <img src="/images/delete.png" >
+      </button>
+    {{/if}}
+  </div>
+
+
 
 </div>
-

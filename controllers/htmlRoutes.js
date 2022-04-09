@@ -14,7 +14,6 @@ router.get("/", authorize, async (req, res) => {
     // Return relevant data
     const tag = tags.map((tag) => tag.get({ plain: true }));
     const post = posts.map((post) => post.get({ plain: true }));
- 
     // Sends data to home view
     res.render("home", { post, tag, userId: req.session.userId });
     
@@ -35,17 +34,24 @@ router.get("/posts/:id", authorize, async (req, res) => {
       order: [["updatedAt", "DESC"]],
     });
     const post = posts.get({ plain: true });
-
+    const admin = await User.findOne({
+      where:{
+        username:'brian'
+      }
+    })
+    const isAdmin = req.session.userId === admin.id
+    
     // Creates isOwner boolean for each comment stating if the current user id matches the user id of the comment
     post.comments.forEach((comment) => {
       comment.isOwner = { valid: req.session.userId === comment.userId };
     });
     
     // Creates isOwner boolean to check if current user id matches user id of post
-    const isOwner = { valid: req.session.userId === post.user.id };
+    const isOwner = req.session.userId === post.user.id;
+    const adminOrOwner = isAdmin || isOwner;
     
     // Sends data to singlePost view
-    res.render("singlePost", { post, isOwner, userId: req.session.userId });
+    res.render("singlePost", { post, isOwner, adminOrOwner });
   } catch (err) {
     res.status(400).json(err);
   }
