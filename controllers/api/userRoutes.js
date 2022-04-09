@@ -5,7 +5,8 @@ const { User } = require("../../models");
 router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
-    req.session.save(() => {
+      req.session.save(() => {
+      res.session.username = userData.username;
       req.session.userId = userData.id;
       req.session.loggedIn = true;
 
@@ -39,8 +40,8 @@ router.post("/login", async (req, res) => {
         .json({ message: "Incorrect email or password, try again." });
       return;
     }
-
     req.session.save(() => {
+      req.session.username = userData.username;
       req.session.userId = userData.id;
       req.session.loggedIn = true;
 

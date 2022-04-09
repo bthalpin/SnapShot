@@ -103,9 +103,10 @@ router.get("/user/:id", authorize, async (req, res) => {
       },
     });
     const post = posts.map((post) => post.get({ plain: true }));
-
+    const currentUser = {name: req.session.username }
     // Sends data to userProfile view
-    res.render("userProfile", { post });
+    console.log(currentUser)
+    res.render("userProfile", { post, currentUser });
   } catch (err) {
     res.status(400).json(err);
   }
