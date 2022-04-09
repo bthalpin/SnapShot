@@ -29,6 +29,9 @@ The following image shows the home page:
 Screen shot of adding a new post:
 ![New post screen shot](./public/images/new-post.png)
 
+Screen shot of view once you select a post:
+![Single post view](./public/images/single-post.png)
+
 ## Installation
 To install the necessary dependencies, run the following command:
 
