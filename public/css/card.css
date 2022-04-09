@@ -375,7 +375,11 @@ input[type="file"]{
     text-shadow: 0 0 0.3rem white;
 }
 
-
+@media screen and (max-width:780px) {
+    .single-post-card{
+        padding:0 1rem;
+    }
+}
 
 @media screen and (max-width: 700px) {
     .navigation{
@@ -412,6 +416,9 @@ input[type="file"]{
     }
     .pictureInput{
         background-image: url(/images/dropzone-small.png);
+    }
+    .single-post-card{
+        padding:0rem;
     }
 }
 
